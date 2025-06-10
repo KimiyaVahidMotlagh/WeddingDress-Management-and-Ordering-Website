@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('recommendation/', include('recommendation.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('bookings/', include('bookings.urls')),
 ]
 
 if settings.DEBUG:

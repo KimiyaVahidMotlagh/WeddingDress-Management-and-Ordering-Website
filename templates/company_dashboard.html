@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Welcome to Your Dashboard</h2>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Category</th>
+        <th>Preview</th>
+        <th>Image</th>
+    </tr>
+    {% for dress in dresses %}
+    <tr>
+        <td>{{ dress.name }}</td>
+        <td>{{ dress.get_status_display }}</td>
+        <td>{{ dress.category.name }}</td>
+        <td>{{ dress.description|truncatechars:50 }}</td>
+        <td>
+            {% if dress.image %}
+                <img src="{{ dress.image.url }}" width="80">
+            {% else %}
+                No image
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

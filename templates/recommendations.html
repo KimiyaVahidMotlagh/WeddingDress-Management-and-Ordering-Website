@@ -1,0 +1,6 @@
+<h2>Recommended Dresses</h2>
+<ul>
+  {% for dress in dresses %}
+    <li>{{ dress.name }} - <img src="{{ dress.image.url }}" width="100"></li>
+  {% endfor %}
+</ul>

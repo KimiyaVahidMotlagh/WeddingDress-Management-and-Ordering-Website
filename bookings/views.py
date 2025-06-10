@@ -18,3 +18,8 @@ def book_dress(request, dress_id):
     else:
         form = BookingForm()
     return render(request, 'book_dress.html', {'form': form, 'dress': dress})
+
+@login_required
+def my_bookings(request):
+    bookings = Booking.objects.filter(user=request.user)
+    return render(request, 'my_bookings.html', {'bookings': bookings})

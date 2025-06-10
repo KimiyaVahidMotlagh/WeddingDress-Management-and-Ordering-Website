@@ -1,6 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
 <h2>Recommended Dresses</h2>
+
 <ul>
   {% for dress in dresses %}
-    <li>{{ dress.name }} - <img src="{{ dress.image.url }}" width="100"></li>
+    <li>
+      <strong>{{ dress.name }}</strong><br>
+      <img src="{{ dress.image.url }}" width="120"><br>
+      {{ dress.description|truncatechars:80 }}<br>
+      <ul>
+        {% for dress in dresses %}
+          <li>{{ dress.name }} - <img src="{{ dress.image.url }}" width="100"></li>
+        {% endfor %}
+      </ul>
+      <a href="{% url 'book_dress' dress.id %}">
+        <button>Book Now</button>
+      </a>
+    </li>
+  {% empty %}
+    <li>No recommendations available.</li>
   {% endfor %}
 </ul>
+
+{% endblock %}

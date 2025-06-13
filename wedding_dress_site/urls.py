@@ -11,6 +11,7 @@ urlpatterns = [
     path('recommendation/', include('recommendation.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('bookings/', include('bookings.urls')),
+    path('accounts/', include('accounts.urls')),
     path('my/', my_bookings, name='my_bookings'),
     path('', homepage, name='homepage'),
 ]

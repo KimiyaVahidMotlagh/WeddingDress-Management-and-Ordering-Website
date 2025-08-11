@@ -1,0 +1,28 @@
+.result-box {
+    background-color: #C8D9E6;
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 30px;
+    color: #443122;
+}
+
+#bodyTypeInfo {
+    margin-bottom: 20px;
+}
+
+#bodyTypeName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #443122;
+    margin-bottom: 10px;
+}
+
+#bodyTypeDesc {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+#bodyTypeVisual {
+    margin-top: 20px;
+    text-align: center;
+}

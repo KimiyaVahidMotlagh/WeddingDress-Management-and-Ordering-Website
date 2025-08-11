@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}measurements{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/measurements.css' %}" />
+{% endblock %}
+
+{% block content %}
+<h2>Enter Your Body Measurements</h2>
+
+<form id="bodyTypeForm" method="post">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+  {% for field in form %}
+    <div class="input-box">
+      {{ field.label_tag }}
+      {{ field }}
+      {% if field.errors %}
+        <div class="error" style="color:red;">{{ field.errors }}</div>
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  <button type="submit">Submit</button>
+</form>
+{% endblock %}

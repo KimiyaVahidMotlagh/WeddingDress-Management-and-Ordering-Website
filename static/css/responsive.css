@@ -1,0 +1,17 @@
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .input-box {
+        padding: 15px;
+    }
+    
+    .welcome-content h1 {
+        font-size: 2rem;
+    }
+}

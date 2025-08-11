@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}login{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="login-box">
+    <h2>Sign Up</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <label for="{{ form.username.id_for_label }}">Username</label>
+        {{ form.username }}
+        <small style="color: #aeb7c0; font-size: 12px; display: block; margin-top: -15px; margin-bottom: 10px;">
+            Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        </small>
+
+        <label for="{{ form.email.id_for_label }}">Email address</label>
+        {{ form.email }}
+
+        <label for="{{ form.password1.id_for_label }}">Password</label>
+        {{ form.password1 }}
+
+        <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+        {{ form.password2 }}
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+{% endblock %}

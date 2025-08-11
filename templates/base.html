@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Wedding Dress Recommender</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/buttons.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
+    {% block extra_head %}{% endblock %}
 </head>
-<body>
+
+<body class="{% block body_class %}{% endblock %}">
+
     {% block content %}{% endblock %}
+
 </body>
 </html>

@@ -5,24 +5,43 @@ body.measurements {
     background-repeat: no-repeat;
     min-height: 100vh;
     color: #fff;
-    direction: rtl;
+}
+
+.measurements-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-height: 80vh;
+    padding: 40px 20px;
+    margin-left: auto;
+    max-width: 1200px;
+}
+
+.measurements-title {
+    text-align: right;
+    color: #883311;
+    margin: 0 30px 30px 0;
+    font-size: 2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    width: auto;
+    white-space: nowrap;
+    font-weight: bold;
+    padding: 5px 0;
 }
 
 #bodyTypeForm {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: 40px;
-    align-items: flex-end;
+    max-width: 400px;
+    background-color: rgba(200, 217, 230, 0.9);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 30px;
 }
 
 .input-box {
-    background-color: rgba(200, 217, 230, 0.9);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
 }
 
@@ -42,8 +61,8 @@ body.measurements {
     background-color: #883311;
     color: #FFF9F0;
     font-size: 16px;
-    direction: ltr;
     text-align: right;
+    direction: ltr;
 }
 
 button {
@@ -56,9 +75,8 @@ button {
     cursor: pointer;
     transition: background-color 0.3s;
     font-weight: bold;
-    max-width: 320px;
-    margin: 20px auto 0 auto;
-    display: block;
+    width: 100%;
+    text-align: center;
 }
 
 button:hover {

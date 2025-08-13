@@ -10,12 +10,87 @@
     <link rel="stylesheet" href="{% static 'css/form.css' %}">
     <link rel="stylesheet" href="{% static 'css/layout.css' %}" />
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/result.css' %}">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+        main {
+            flex: 1;
+        }
+        header {
+            background-color: #222;
+            color: #eee;
+            padding: 15px 20px;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .welcome-msg {
+            color: #f8f8f8;
+            font-size: 1em;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .nav-link {
+            color: #66ccff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            border: 1px solid #66ccff;
+        }
+        .nav-link:hover {
+            background-color: rgba(102, 204, 255, 0.1);
+        }
+    </style>
     {% block extra_head %}{% endblock %}
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
 
+{% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'signup' %}
+<header>
+    <div class="header-left">
+        {% if user.is_authenticated %}
+            <span class="welcome-msg">Welcome, {{ user.username }}</span>
+        {% endif %}
+    </div>
+    <div class="header-right">
+        {% if user.is_authenticated %}
+            <a href="{% url 'measurements' %}" class="nav-link">Measure Again</a>
+            <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="nav-link">Login</a>
+            <a href="{% url 'signup' %}" class="nav-link">Sign Up</a>
+        {% endif %}
+    </div>
+</header>
+{% endif %}
+
+<main>
     {% block content %}{% endblock %}
+</main>
+
+{% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'signup' %}
+{% endif %}
 
 </body>
 </html>

@@ -34,16 +34,17 @@ class SignUpForm(forms.ModelForm):
 class BodyMeasurementForm(forms.ModelForm):
     class Meta:
         model = BodyMeasurement
-        fields = ['height', 'bust', 'waist', 'hips']
+        fields = ['height', 'bust', 'waist', 'high_hip', 'hips']
         widgets = {
             'height': forms.NumberInput(attrs={'step': '0.1', 'min': '0'}),
             'bust': forms.NumberInput(attrs={'step': '0.1', 'min': '0'}),
             'waist': forms.NumberInput(attrs={'step': '0.1', 'min': '0'}),
+            'high_hip': forms.NumberInput(attrs={'step': '0.1', 'min': '0'}),
             'hips': forms.NumberInput(attrs={'step': '0.1', 'min': '0'}),
         }
 
 class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField(required=False)  # ایمیل اختیاری
+    email = forms.EmailField(required=False)
 
     class Meta:
         model = User

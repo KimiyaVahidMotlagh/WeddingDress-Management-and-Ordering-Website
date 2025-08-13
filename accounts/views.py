@@ -55,13 +55,27 @@ def measurements_view(request):
             height = form.cleaned_data.get('height')
             bust = form.cleaned_data.get('bust')
             waist = form.cleaned_data.get('waist')
+            high_hip = form.cleaned_data.get('high_hip')
             hips = form.cleaned_data.get('hips')
 
-            if bust and waist and hips:
-                if waist < bust and waist < hips:
-                    bm.body_type = 'Hourglass'
+            if bust and waist and hips and high_hip:
+                waist_hip_ratio = waist / hips if hips else 0
+                bust_hip_ratio = bust / hips if hips else 0
+                waist_high_hip_ratio = waist / high_hip if high_hip else 0
+
+                if waist_hip_ratio < 0.7 and bust_hip_ratio > 1.1:
+                    bm.body_type = "Hourglass"
+                elif waist_hip_ratio >= 0.75 and abs(bust - hips) < 5:
+                    bm.body_type = "Rectangle"
+                elif waist_hip_ratio > 0.8 and bust < hips:
+                    bm.body_type = "Triangle"
+                elif waist_hip_ratio > 0.8 and bust > hips:
+                    bm.body_type = "Inverted Triangle"
                 else:
-                    bm.body_type = 'Other'
+                    bm.body_type = "Other"
+            else:
+                bm.body_type = "Incomplete data"
+
             bm.save()
             return redirect('body_type_result')
     else:
@@ -80,6 +94,8 @@ def body_type_result_view(request):
 
     return render(request, 'accounts/body_type_result.html', {'body_type': body_type})
 
+def recommendations_view(request):
+    return render(request, 'accounts/recommendations.html')
 
 def logout_view(request):
     logout(request)

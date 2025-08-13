@@ -8,22 +8,24 @@
 {% endblock %}
 
 {% block content %}
-<h2>Enter Your Body Measurements</h2>
+<div class="measurements-container">
+    <h2 class="measurements-title">Enter Your Body Measurements</h2>
 
-<form id="bodyTypeForm" method="post">
-  {% csrf_token %}
-  {{ form.non_field_errors }}
+    <form id="bodyTypeForm" method="post">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
 
-  {% for field in form %}
-    <div class="input-box">
-      {{ field.label_tag }}
-      {{ field }}
-      {% if field.errors %}
-        <div class="error" style="color:red;">{{ field.errors }}</div>
-      {% endif %}
-    </div>
-  {% endfor %}
+      {% for field in form %}
+        <div class="input-box">
+          {{ field.label_tag }}
+          {{ field }}
+          {% if field.errors %}
+            <div class="error" style="color:red;">{{ field.errors }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
 
-  <button type="submit">Submit</button>
-</form>
+      <button type="submit">Submit</button>
+    </form>
+</div>
 {% endblock %}

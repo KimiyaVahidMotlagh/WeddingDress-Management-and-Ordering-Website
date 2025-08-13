@@ -1,15 +1,24 @@
 body.login {
-
     background-image: url("/static/images/user.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: #0C141A;
+    color: rgba(255, 255, 255, 0.85);
     height: 100vh;
+    margin: 0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: #0C141A;
-    color: rgba(255, 255, 255, 0.85);
+}
+
+body.login main {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
 }
 
 .login-box {
@@ -20,6 +29,7 @@ body.login {
     width: 350px;
     text-align: center;
     margin-right: 60px;
+    direction: rtl;
 }
 
 .login-box h2 {

@@ -26,17 +26,31 @@ def signup_view(request):
         form = SignUpForm()
     return render(request, 'accounts/signup.html', {'form': form})
 
-@login_required
 def post_login_redirect_view(request):
     user = request.user
     try:
         measurement = user.bodymeasurement
-        if measurement.height is None:
-            return redirect('measurements')
+        if measurement and measurement.body_type:
+            return redirect('dashboard')
         else:
-            return redirect('recommendations')
+            return redirect('measurements')
     except BodyMeasurement.DoesNotExist:
         return redirect('measurements')
+
+def dashboard_view(request):
+    user = request.user
+    body_type = None
+    try:
+        measurement = user.bodymeasurement
+        body_type = measurement.body_type
+    except BodyMeasurement.DoesNotExist:
+        pass
+
+    return render(request, 'accounts/dashboard.html', {
+        'username': user.username,
+        'body_type': body_type
+    })
+
 
 @login_required
 def measurements_view(request):

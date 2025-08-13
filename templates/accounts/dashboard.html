@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}dashboard{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="page-title">Dashboard</div>
+
+<div class="username-top">{{ username }}</div>
+
+<div class="dashboard-menu-box">
+    <ul>
+        <li><a href="{% url 'measurements' %}">Measure Again</a></li>
+        <li><a href="{% url 'body_type_result' %}">Your Body Type</a></li>
+        <li><a href="#">Favorites</a></li>
+        <li><a href="{% url 'recommendations' %}">Recommended</a></li>
+        <li><a href="#">Booking</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+</div>
+{% endblock %}

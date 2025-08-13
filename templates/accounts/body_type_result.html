@@ -9,13 +9,17 @@
 {% endblock %}
 
 {% block content %}
-<div class="result-wrapper">
-    <div class="result-box">
-        <h2 id="bodyTypeName">Your body type is</h2>
-        <p class="body-type-value"><strong>{{ body_type }}</strong></p>
-        <a href="{% url 'recommendations' %}" class="recommendation-link">
-            Recommended Wedding Dresses
-        </a>
-    </div>
-</div>
+<form id="bodyTypeForm">
+  <div class="input-box result-box">
+      <h2 id="bodyTypeName">Your body type is</h2>
+      <p><strong>{{ body_type }}</strong></p>
+
+      <a href="{% url 'recommendations' %}" style="display:block; margin-top:16px; color:#07374b; font-weight:bold;">
+        Recommended Wedding Dresses
+      </a>
+      <a href="{% url 'dashboard' %}" style="display:block; margin-top:10px; font-weight:bold;">
+        Go to Dashboard
+      </a>
+  </div>
+</form>
 {% endblock %}

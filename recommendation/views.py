@@ -17,5 +17,7 @@ def submit_measurements(request):
 
 def show_recommendations(request):
     # Placeholder mock recommendation logic
-    dresses = Dress.objects.filter(status='ready')[:3]
-    return render(request, 'recommendations.html', {'dresses': dresses})
+    dresses = Dress.objects.all()
+    return render(request, 'recommendation/recommendations.html', {
+        'dresses': dresses
+    })

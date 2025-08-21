@@ -29,3 +29,7 @@ Thumbs.db
 
 # Database
 *.db"db.sqlite3" 
+recommendation/attribute_recommender.py 
+recommendation/body_type_calculator.py 
+recommendation/test_generator.py 
+recommendation/test_local_models.py 

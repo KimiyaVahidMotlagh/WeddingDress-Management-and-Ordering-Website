@@ -3,12 +3,96 @@ from django.db import models
 
 
 class BodyMeasurement(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    height = models.FloatField(null=True, blank=True)
-    bust = models.FloatField(null=True, blank=True)
-    waist = models.FloatField(null=True, blank=True)
-    high_hip = models.FloatField(null=True, blank=True)
-    hips = models.FloatField(null=True, blank=True)
-    body_type = models.CharField(max_length=50, blank=True, null=True)
+    # انواع تیپ‌های بدنی با توضیحات فارسی
+    BODY_TYPE_CHOICES = [
+        ('HOURGLASS', 'ساعت‌شنی'),
+        ('RECTANGLE', 'مستطیل'),
+        ('TRIANGLE', 'مثلث (گلابی)'),
+        ('INVERTED_TRIANGLE', 'مثلث وارونه (سیب)'),
+        ('APPLE', 'گرد (سیب)'),
+        ('OTHER', 'سایر'),
+    ]
+
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name="کاربر",
+        related_name='bodymeasurement'
+    )
+    height = models.FloatField(
+        verbose_name="قد (سانتی‌متر)",
+        null=True,
+        blank=True
+    )
+    bust = models.FloatField(
+        verbose_name="دور سینه (سانتی‌متر)",
+        null=True,
+        blank=True
+    )
+    waist = models.FloatField(
+        verbose_name="دور کمر (سانتی‌متر)",
+        null=True,
+        blank=True,
+        help_text="مقدار باید بالای ناف و زیر دنده‌ها اندازه‌گیری شود"
+    )
+    high_hip = models.FloatField(
+        verbose_name="دور بالای باسن (سانتی‌متر)",
+        null=True,
+        blank=True,
+        help_text="حدود ۱۰ سانت زیر کمر"
+    )
+    hips = models.FloatField(
+        verbose_name="دور باسن (سانتی‌متر)",
+        null=True,
+        blank=True
+    )
+    body_type = models.CharField(
+        verbose_name="تیپ بدنی",
+        max_length=20,
+        choices=BODY_TYPE_CHOICES,
+        null=True,
+        blank=True
+    )
+    created_at = models.DateTimeField(
+        verbose_name="تاریخ ایجاد",
+        auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        verbose_name="آخرین بروزرسانی",
+        auto_now=True
+    )
+
+    class Meta:
+        verbose_name = "اندازه‌گیری بدن"
+        verbose_name_plural = "اندازه‌گیری‌های بدن"
+        ordering = ['-updated_at']
+
     def __str__(self):
-        return f"{self.user.username} Measurement"
+        return f"اندازه‌گیری {self.user.username} - تیپ: {self.get_body_type_display()}"
+
+    def calculate_body_type(self):
+        """محاسبه خودکار تیپ بدنی براساس اندازه‌ها"""
+        if not all([self.waist, self.hips, self.bust]):
+            return None
+
+        waist_hip_ratio = self.waist / self.hips
+        bust_hip_ratio = self.bust / self.hips
+
+        if waist_hip_ratio >= 0.85 and (abs(self.bust - self.hips) < 5) and (self.waist >= 88):
+            return 'APPLE'
+        elif waist_hip_ratio < 0.7 and bust_hip_ratio > 1.1:
+            return 'HOURGLASS'
+        elif waist_hip_ratio >= 0.75 and abs(self.bust - self.hips) < 5:
+            return 'RECTANGLE'
+        elif waist_hip_ratio > 0.8 and self.bust < self.hips:
+            return 'TRIANGLE'
+        elif waist_hip_ratio > 0.8 and self.bust > self.hips:
+            return 'INVERTED_TRIANGLE'
+        else:
+            return 'OTHER'
+
+    def save(self, *args, **kwargs):
+        """ذخیره خودکار تیپ بدنی هنگام ثبت"""
+        if all([self.waist, self.hips, self.bust]):
+            self.body_type = self.calculate_body_type()
+        super().save(*args, **kwargs)

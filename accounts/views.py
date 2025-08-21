@@ -4,7 +4,28 @@ from .forms import CustomLoginForm, SignUpForm, BodyMeasurementForm, CustomUserC
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import BodyMeasurement
+import os
+from django.conf import settings
+from django.core.files.storage import default_storage
 
+
+def user_home_view(request):
+    user = request.user
+
+    dress_images = []
+    dresses_path = os.path.join(settings.MEDIA_ROOT, 'All Dresses')
+
+    if os.path.exists(dresses_path):
+        for filename in os.listdir(dresses_path):
+            if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp')):
+                dress_images.append({
+                    'url': os.path.join(settings.MEDIA_URL, 'All Dresses', filename).replace('\\', '/'),
+                    'name': os.path.splitext(filename)[0]  # حذف پسوند فایل
+                })
+
+    return render(request, 'accounts/user-home.html', {
+        'dress_images': dress_images
+    })
 
 def login_view(request):
     form = CustomLoginForm(request, data=request.POST or None)
@@ -31,25 +52,11 @@ def post_login_redirect_view(request):
     try:
         measurement = user.bodymeasurement
         if measurement and measurement.body_type:
-            return redirect('dashboard')
+            return redirect('user_home')
         else:
             return redirect('measurements')
     except BodyMeasurement.DoesNotExist:
         return redirect('measurements')
-
-def dashboard_view(request):
-    user = request.user
-    body_type = None
-    try:
-        measurement = user.bodymeasurement
-        body_type = measurement.body_type
-    except BodyMeasurement.DoesNotExist:
-        pass
-
-    return render(request, 'accounts/dashboard.html', {
-        'username': user.username,
-        'body_type': body_type
-    })
 
 
 @login_required
@@ -77,7 +84,10 @@ def measurements_view(request):
                 bust_hip_ratio = bust / hips if hips else 0
                 waist_high_hip_ratio = waist / high_hip if high_hip else 0
 
-                if waist_hip_ratio < 0.7 and bust_hip_ratio > 1.1:
+                # منطق تشخیص تیپ بدنی
+                if waist_hip_ratio >= 0.85 and (abs(bust - hips) < 5) and (waist >= 88):
+                    bm.body_type = "Apple"
+                elif waist_hip_ratio < 0.7 and bust_hip_ratio > 1.1:
                     bm.body_type = "Hourglass"
                 elif waist_hip_ratio >= 0.75 and abs(bust - hips) < 5:
                     bm.body_type = "Rectangle"
@@ -96,6 +106,7 @@ def measurements_view(request):
         form = BodyMeasurementForm(instance=measurement)
 
     return render(request, 'accounts/measurements.html', {'form': form})
+
 
 @login_required
 def body_type_result_view(request):

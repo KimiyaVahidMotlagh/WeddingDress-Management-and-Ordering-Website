@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.about, body.contact {
+    background: url("../images/halazoon.jpg") no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    color: rgba(255,255,255,0.9);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-container {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 120px;
+    box-sizing: border-box;
+}
+
+.page-title {
+    position: absolute;
+    top: 120px;
+    left: 120px;
+    font-size: 3em;
+    font-weight: bold;
+    color: #883311;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    z-index: 10;
+}
+
+.content-box {
+    position: absolute;
+    top: 200px;
+    left: 120px;
+    width: 25%;
+    max-width: 400px;
+    min-width: 300px;
+    background-color: transparent;
+    padding: 30px;
+    border-radius: 15px;
+    color: #ffffff;
+    z-index: 900;
+    max-height: 60vh;
+    overflow-y: auto;
+    direction: rtl;
+}
+
+.info-content {
+    direction: ltr;
+    text-align: left;
+}
+
+.content-box::-webkit-scrollbar {
+    width: 12px;
+    left: 0;
+}
+
+.content-box::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    margin: 5px;
+}
+
+.content-box::-webkit-scrollbar-thumb {
+    background: rgba(136, 51, 17, 0.6);
+    border-radius: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.content-box::-webkit-scrollbar-thumb:hover {
+    background: rgba(136, 51, 17, 0.8);
+}
+
+.content-box {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(136, 51, 17, 0.6) rgba(255, 255, 255, 0.1);
+}
+
+.info-content h2 {
+    color: #883311;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    border-bottom: 2px solid #883311;
+    padding-bottom: 8px;
+    text-align: left;
+}
+
+.info-content p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    text-align: left;
+    word-wrap: break-word;
+    max-width: 100%;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.info-content ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.info-content li {
+    margin: 15px 0;
+    padding-left: 30px;
+    position: relative;
+    font-size: 1.1em;
+    line-height: 1.6;
+    word-wrap: break-word;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    text-align: left;
+}
+
+.info-content li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #883311;
+    font-weight: bold;
+    font-size: 1.4em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.contact-info {
+    margin-bottom: 30px;
+}
+
+.contact-info h2 {
+    color: #883311;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    border-bottom: 2px solid #883311;
+    padding-bottom: 8px;
+    text-align: left;
+}
+
+.contact-details p {
+    margin: 18px 0;
+    font-size: 1.1em;
+    line-height: 1.6;
+    word-wrap: break-word;
+    max-width: 100%;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    text-align: left;
+}
+
+.contact-details strong {
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.contact-form h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 8px;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 1em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    text-align: left;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    color: #333;
+    text-align: left;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #883311;
+    box-shadow: 0 0 8px rgba(136, 51, 17, 0.5);
+}
+
+.submit-btn {
+    background-color: #883311;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.submit-btn:hover {
+    background-color: #6b270d;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ریسپانسیو */
+@media (max-width: 1024px) {
+    .content-box {
+        left: 80px;
+        width: 35%;
+    }
+
+    .page-title {
+        left: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        left: 40px;
+        font-size: 2.5em;
+        top: 100px;
+    }
+
+    .content-box {
+        left: 40px;
+        width: calc(100% - 80px);
+        max-width: 500px;
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        left: 20px;
+        font-size: 2em;
+        top: 80px;
+    }
+
+    .content-box {
+        left: 20px;
+        width: calc(100% - 40px);
+        padding: 20px;
+    }
+
+    .info-content h2,
+    .contact-info h2,
+    .contact-form h2 {
+        font-size: 1.5em;
+    }
+
+    .info-content p,
+    .contact-details p {
+        font-size: 1em;
+    }
+
+    .info-content li {
+        font-size: 1em;
+        padding-left: 25px;
+    }
+}

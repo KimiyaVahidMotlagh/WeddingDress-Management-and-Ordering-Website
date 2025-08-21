@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="page-title">
+    <h2>Wedding Dress Collection</h2>
+</div>
+
+{% if dress_images %}
+<div class="image-container">
+    {% for dress in dress_images %}
+    <div class="dress-item">
+        <img src="{{ dress.url }}" alt="{{ dress.name }}" class="dress-image">
+        <div class="dress-info">
+            <h3 class="dress-name">{{ dress.name }}</h3>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="no-images-message">
+    <p>No dress images found in the collection.</p>
+    <p>Please check if the images are uploaded to the media/All Dresses folder.</p>
+</div>
+{% endif %}
+{% endblock %}

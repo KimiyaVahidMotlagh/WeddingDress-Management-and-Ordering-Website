@@ -1,23 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}DelYar - Welcome{% endblock %}
+
 {% block extra_head %}
+<style>
+    body {
+        background-image: url("{% static 'images/tor.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>
 <link rel="stylesheet" href="{% static 'css/welcome-page.css' %}">
 {% endblock %}
-
-{% block body_class %}welcome{% endblock %}
 
 {% block content %}
 <div class="welcome-page">
     <div class="welcome-content">
-        <h1>Welcome to the Wedding Dress Recommendation System</h1>
+        <h1><span class="brand-name">DelYar-mezon</span></h1>
+        <h2 class="subtitle">Wedding Dress Recommender</h2>
         <p>Please log in or sign up to get started:</p>
-        <div class="button-group">
-            <a href="/admin/login/"><button>Company/Admin Login</button></a>
 
+        <div class="button-group">
             <div class="user-buttons">
-                <a href="/accounts/login/"><button>User Login</button></a>
-                <a href="/accounts/signup/"><button>User Sign Up</button></a>
+                <a href="/admin/login/"><button>Company/Admin Login</button></a>
+                <a href="{% url 'login' %}"><button>User Login</button></a>
+                <a href="{% url 'signup' %}"><button>User Sign Up</button></a>
             </div>
         </div>
     </div>

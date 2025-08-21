@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}about{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/about-contact.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="page-title">About Us</div>
+
+    <div class="content-box">
+        <div class="info-content">
+            <h2>Our Story</h2>
+            <p>In DelYar Bridal dress we are a dedicated team passionate about helping brides find their perfect wedding dress.
+               With years of experience in the fashion industry, we understand the importance of finding
+               a dress that not only looks beautiful but also complements your unique body type.</p>
+
+            <h2>Our Mission</h2>
+            <p>To provide personalized wedding dress recommendations based on scientific body type analysis,
+               ensuring every bride feels confident and radiant on her special day.</p>
+
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>Advanced body type analysis technology</li>
+                <li>Extensive collection of wedding dresses</li>
+                <li>Personalized recommendations</li>
+                <li>Expert fashion consultants</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

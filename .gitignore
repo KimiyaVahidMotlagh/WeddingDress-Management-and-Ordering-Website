@@ -28,4 +28,4 @@ Thumbs.db
 .env.production
 
 # Database
-*.db
+*.db"db.sqlite3" 

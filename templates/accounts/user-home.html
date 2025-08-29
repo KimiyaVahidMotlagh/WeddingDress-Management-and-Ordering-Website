@@ -3,13 +3,19 @@
 
 {% block content %}
 <div class="page-title">
-    <h2>Wedding Dress Collection</h2>
+    <h2>Delyar Collection</h2>
 </div>
 
 {% if dress_images %}
 <div class="image-container">
     {% for dress in dress_images %}
     <div class="dress-item">
+        <!-- قلب آبی برای علاقه‌مندی -->
+        <div class="favorite-heart" data-dress-id="{{ forloop.counter }}" data-dress-name="{{ dress.name }}" data-dress-url="{{ dress.url }}">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#3498db" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z"/>
+            </svg>
+        </div>
         <img src="{{ dress.url }}" alt="{{ dress.name }}" class="dress-image">
         <div class="dress-info">
             <h3 class="dress-name">{{ dress.name }}</h3>
@@ -23,4 +29,61 @@
     <p>Please check if the images are uploaded to the media/All Dresses folder.</p>
 </div>
 {% endif %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const favoriteHearts = document.querySelectorAll('.favorite-heart');
+
+    favoriteHearts.forEach(heart => {
+        heart.addEventListener('click', function() {
+            const dressId = this.getAttribute('data-dress-id');
+            const dressName = this.getAttribute('data-dress-name');
+            const dressUrl = this.getAttribute('data-dress-url');
+
+            // ذخیره در localStorage
+            let favorites = JSON.parse(localStorage.getItem('favoriteDresses')) || [];
+
+            // بررسی وجود لباس در لیست علاقه‌مندی‌ها
+            const existingIndex = favorites.findIndex(item => item.id == dressId);
+
+            if (existingIndex === -1) {
+                // افزودن به علاقه‌مندی‌ها
+                favorites.push({
+                    id: dressId,
+                    name: dressName,
+                    url: dressUrl
+                });
+
+                // تغییر ظاهر قلب
+                this.querySelector('svg path').style.fill = '#e74c3c';
+                alert('Added to favorites! Redirecting...');
+            } else {
+                // حذف از علاقه‌مندی‌ها
+                favorites.splice(existingIndex, 1);
+
+                // تغییر ظاهر قلب
+                this.querySelector('svg path').style.fill = '#3498db';
+                alert('Removed from favorites!');
+            }
+
+            // ذخیره‌سازی در localStorage
+            localStorage.setItem('favoriteDresses', JSON.stringify(favorites));
+
+            // هدایت به صفحه علاقه‌مندی‌ها
+            window.location.href = "/accounts/favorites/";  // استفاده از URL مستقیم
+        });
+    });
+
+    // بررسی و علامت‌گذاری لباس‌های موجود در علاقه‌مندی‌ها
+    const favorites = JSON.parse(localStorage.getItem('favoriteDresses')) || [];
+    favoriteHearts.forEach(heart => {
+        const dressId = heart.getAttribute('data-dress-id');
+        const exists = favorites.some(item => item.id == dressId);
+
+        if (exists) {
+            heart.querySelector('svg path').style.fill = '#e74c3c';
+        }
+    });
+});
+</script>
 {% endblock %}

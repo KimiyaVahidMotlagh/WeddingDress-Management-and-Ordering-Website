@@ -8,15 +8,17 @@ import os
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('recommendation/', include('recommendation.urls')),
-    path('bookings/', include('bookings.urls')),
+    path('', homepage, name='homepage'),
     path('accounts/', include('accounts.urls')),
+    path('recommendation/', include('recommendation.urls')),
     path('about/', about_view, name='about'),
     path('contact/', contact_view, name='contact'),
-    path('my/', my_bookings, name='my_bookings'),
-    path('', homepage, name='homepage'),
+    path('dresses/', include('dresses.urls')),
+    path('bookings/', include('bookings.urls')),
 ]
 
 if settings.DEBUG:
     from django.conf.urls.static import static
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

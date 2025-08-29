@@ -1,0 +1,167 @@
+    body {
+        background-image: url('/static/images/generate.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        color: #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .page-title {
+        text-align: center;
+        margin: 80px 0 30px 0;
+        color: #883311;
+    }
+
+    .page-title h2 {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+        color: #883311;
+        font-weight: 700;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+.generated-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.generated-image-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+.generated-img {
+    width: 100%;
+    max-width: 512px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.image-details {
+    width: 100%;
+    text-align: center;
+}
+
+.image-details h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.prompt-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border-left: 4px solid #3498db;
+}
+
+.prompt-section h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.prompt-text {
+    color: #555;
+    line-height: 1.6;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.download-btn, .generate-again-btn, .view-all-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.download-btn {
+    background: #27ae60;
+    color: white;
+}
+
+.download-btn:hover {
+    background: #219a52;
+    transform: translateY(-2px);
+}
+
+.generate-again-btn {
+    background: #3498db;
+    color: white;
+}
+
+.generate-again-btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.view-all-btn {
+    background: #95a5a6;
+    color: white;
+}
+
+.view-all-btn:hover {
+    background: #7f8c8d;
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .generated-container {
+        padding: 15px;
+    }
+
+    .generated-image-card {
+        padding: 20px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .download-btn, .generate-again-btn, .view-all-btn {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .generated-img {
+        max-width: 100%;
+    }
+
+    .prompt-section {
+        padding: 15px;
+    }
+
+    .image-details h3 {
+        font-size: 1.5em;
+    }
+}

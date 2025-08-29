@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="page-title">
+    <h2>My Favorite Dresses</h2>
+</div>
+
+<div id="favorites-container" class="image-container">
+    <!-- محتوای علاقه‌مندی‌ها با JavaScript پر خواهد شد -->
+</div>
+
+<div id="no-favorites-message" class="no-images-message" style="display: none;">
+    <p>You haven't added any dresses to your favorites yet.</p>
+    <p>Go to the <a href="/accounts/user-home/">Delyar Collection</a> to add some!</p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const favoritesContainer = document.getElementById('favorites-container');
+    const noFavoritesMessage = document.getElementById('no-favorites-message');
+
+    // دریافت علاقه‌مندی‌ها از localStorage
+    const favorites = JSON.parse(localStorage.getItem('favoriteDresses')) || [];
+
+    if (favorites.length === 0) {
+        noFavoritesMessage.style.display = 'block';
+        return;
+    }
+
+    // نمایش علاقه‌مندی‌ها
+    favorites.forEach(dress => {
+        const dressItem = document.createElement('div');
+        dressItem.className = 'dress-item';
+        dressItem.innerHTML = `
+            <div class="remove-favorite" data-dress-id="${dress.id}">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#e74c3c" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z"/>
+                </svg>
+            </div>
+            <img src="${dress.url}" alt="${dress.name}" class="dress-image">
+            <div class="dress-info">
+                <h3 class="dress-name">${dress.name}</h3>
+            </div>
+        `;
+        favoritesContainer.appendChild(dressItem);
+    });
+
+    // افزودن event listener برای دکمه‌های حذف
+    const removeButtons = document.querySelectorAll('.remove-favorite');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const dressId = this.getAttribute('data-dress-id');
+
+            // حذف از localStorage
+            let favorites = JSON.parse(localStorage.getItem('favoriteDresses')) || [];
+            favorites = favorites.filter(item => item.id != dressId);
+            localStorage.setItem('favoriteDresses', JSON.stringify(favorites));
+
+            // حذف از صفحه
+            this.parentElement.remove();
+
+            // اگر هیچ علاقه‌مندی باقی نماند، نمایش پیام
+            if (favorites.length === 0) {
+                noFavoritesMessage.style.display = 'block';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,7 +1,9 @@
 from django.urls import path
 from . import views
 
+app_name = 'recommendation'
+
 urlpatterns = [
-    path('submit/', views.submit_measurements, name='submit_measurements'),
-    path('recommendations/', views.show_recommendations, name='show_recommendations'),
+    path('', views.recommendation_view, name='recommendation'),
+    path('generate/', views.generate_recommendation, name='generate'),
 ]

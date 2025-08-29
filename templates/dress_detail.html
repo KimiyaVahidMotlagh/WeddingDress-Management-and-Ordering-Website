@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ dress.name }}</h1>
+<p>{{ dress.description }}</p>
+<p>قیمت: {{ dress.price }} تومان</p>
+<img src="{{ dress.image.url }}" alt="{{ dress.name }}">
+{% endblock %}

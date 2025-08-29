@@ -8,9 +8,8 @@ class BodyMeasurement(models.Model):
         ('HOURGLASS', 'ساعت‌شنی'),
         ('RECTANGLE', 'مستطیل'),
         ('TRIANGLE', 'مثلث (گلابی)'),
-        ('INVERTED_TRIANGLE', 'مثلث وارونه (سیب)'),
+        ('INVERTED_TRIANGLE', 'مثلث وارونه'),
         ('APPLE', 'گرد (سیب)'),
-        ('OTHER', 'سایر'),
     ]
 
     user = models.OneToOneField(
@@ -78,18 +77,21 @@ class BodyMeasurement(models.Model):
         waist_hip_ratio = self.waist / self.hips
         bust_hip_ratio = self.bust / self.hips
 
-        if waist_hip_ratio >= 0.85 and (abs(self.bust - self.hips) < 5) and (self.waist >= 88):
-            return 'APPLE'
-        elif waist_hip_ratio < 0.7 and bust_hip_ratio > 1.1:
+        if waist_hip_ratio < 0.7 and 0.95 < bust_hip_ratio < 1.05:
             return 'HOURGLASS'
-        elif waist_hip_ratio >= 0.75 and abs(self.bust - self.hips) < 5:
+        elif waist_hip_ratio >= 0.85 and 0.95 < bust_hip_ratio < 1.05:
+            return 'APPLE'
+        elif 0.95 < bust_hip_ratio < 1.05:
             return 'RECTANGLE'
-        elif waist_hip_ratio > 0.8 and self.bust < self.hips:
+        elif bust_hip_ratio < 0.9:
             return 'TRIANGLE'
-        elif waist_hip_ratio > 0.8 and self.bust > self.hips:
+        elif bust_hip_ratio > 1.1:
             return 'INVERTED_TRIANGLE'
         else:
-            return 'OTHER'
+            if waist_hip_ratio < 0.75:
+                return 'HOURGLASS'
+            else:
+                return 'RECTANGLE'
 
     def save(self, *args, **kwargs):
         """ذخیره خودکار تیپ بدنی هنگام ثبت"""

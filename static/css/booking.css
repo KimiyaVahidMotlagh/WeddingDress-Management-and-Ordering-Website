@@ -1,0 +1,403 @@
+body.booking {
+    background: url("../images/halazoon.jpg") no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    color: rgba(255,255,255,0.9);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.booking .main-container {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 120px;
+    box-sizing: border-box;
+}
+
+.booking .page-title {
+    position: absolute;
+    left: 120px;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #883311;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    z-index: 10;
+}
+
+.booking .content-box {
+    position: absolute;
+    top: 80px;
+    left: 120px;
+    width: 80%;
+    max-width: 1200px;
+    min-width: 300px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 15px;
+    color: #ffffff;
+    z-index: 900;
+    display: flex;
+    gap: 30px;
+}
+
+.booking .table-container {
+    flex: 2;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 2px;
+    overflow: visible;
+}
+
+.booking .user-sidebar {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.booking .user-bookings {
+    margin-bottom: 20px;
+}
+
+.booking .booking-item {
+    background: rgba(136, 51, 17, 0.3);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid #883311;
+}
+
+.booking .booking-item p {
+    margin: 5px 0;
+    color: #ffffff;
+}
+
+.booking .no-booking {
+    background: rgba(255, 193, 7, 0.3);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #ffc107;
+    color: #ffffff;
+}
+
+.booking #booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    color: #ffffff;
+    table-layout: fixed;
+}
+
+.booking #booking-table th,
+.booking #booking-table td {
+    padding: 8px 6px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.booking #booking-table th {
+    background-color: rgba(136, 51, 17, 0.7);
+    color: white;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.booking #booking-table td:first-child {
+    background-color: rgba(136, 51, 17, 0.5);
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.booking .time-slot {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.booking .time-slot:hover {
+    background-color: rgba(136, 51, 17, 0.3);
+}
+
+.booking .time-slot.selected {
+    background-color: rgba(40, 167, 69, 0.3);
+}
+
+.booking .time-slot.booked {
+    background-color: rgba(220, 53, 69, 0.3);
+    cursor: not-allowed;
+}
+
+.booking .slot-btn {
+    padding: 6px 10px;
+    background: rgba(136, 51, 17, 0.7);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 60px;
+    font-size: 11px;
+}
+
+.booking .slot-btn:hover:not(:disabled) {
+    background: rgba(136, 51, 17, 0.9);
+}
+
+.booking .slot-btn:disabled {
+    background: rgba(108, 117, 125, 0.5);
+    cursor: not-allowed;
+}
+
+.booking .week-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    margin-top: -5px;
+}
+
+.booking .nav-btn {
+    padding: 8px 12px;
+    background: rgba(136, 51, 17, 0.7);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.booking .nav-btn:disabled {
+    background: rgba(108, 117, 125, 0.7);
+    cursor: not-allowed;
+}
+
+.booking #week-display {
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0 12px;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.booking .submit-btn {
+    padding: 10px 20px;
+    background: rgba(136, 51, 17, 0.7);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 15px;
+    white-space: nowrap;
+}
+
+.booking .submit-btn:hover {
+    background: rgba(136, 51, 17, 0.9);
+}
+
+#selected-time {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    background: rgba(0, 123, 255, 0.3);
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border-left: 4px solid rgba(0, 123, 255, 0.7);
+}
+
+#selected-time h2 {
+    margin: 0;
+    font-size: 1.1em;
+    white-space: nowrap;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+#selected-time-text {
+    font-weight: bold;
+    color: white;
+    font-size: 0.95em;
+}
+
+#confirm-booking {
+    margin-top: 0;
+    white-space: nowrap;
+}
+
+.booking .confirmation-message {
+    display: none !important;
+}
+
+.booking .content-box::-webkit-scrollbar,
+.booking .table-container::-webkit-scrollbar,
+.booking .user-sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.booking .content-box,
+.booking .table-container,
+.booking .user-sidebar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+@media (max-width: 1200px) {
+    .booking .content-box {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .booking .table-container,
+    .booking .user-sidebar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .booking .content-box {
+        left: 80px;
+        width: calc(100% - 160px);
+    }
+
+    .booking .page-title {
+        left: 80px;
+    }
+
+    .booking #booking-table {
+        font-size: 11px;
+    }
+
+    .booking .slot-btn {
+        padding: 5px 8px;
+        width: 55px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    .booking #booking-table {
+        font-size: 10px;
+    }
+
+    .booking #booking-table th,
+    .booking #booking-table td {
+        padding: 6px 4px;
+    }
+
+    .booking .slot-btn {
+        width: 50px;
+        padding: 4px 6px;
+        font-size: 9px;
+    }
+
+    .booking #selected-time {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .booking .page-title {
+        left: 40px;
+        font-size: 2em;
+        top: 70px;
+    }
+
+    .booking .content-box {
+        left: 40px;
+        width: calc(100% - 80px);
+        top: 140px;
+        padding: 20px;
+    }
+
+    .booking .week-navigation {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+
+    .booking .nav-btn {
+        margin: 3px 0;
+        font-size: 11px;
+        padding: 7px 10px;
+    }
+
+    .booking #week-display {
+        text-align: center;
+        margin: 8px 0;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .booking #booking-table {
+        font-size: 9px;
+    }
+
+    .booking #booking-table th,
+    .booking #booking-table td {
+        padding: 5px 3px;
+    }
+
+    .booking .slot-btn {
+        width: 45px;
+        padding: 3px 5px;
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking .page-title {
+        left: 20px;
+        font-size: 1.8em;
+        top: 60px;
+    }
+
+    .booking .content-box {
+        left: 20px;
+        width: calc(100% - 40px);
+        padding: 15px;
+        top: 120px;
+    }
+
+    .booking #selected-time {
+        padding: 8px;
+    }
+
+    .booking #selected-time h2 {
+        font-size: 1em;
+    }
+
+    .booking .submit-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .booking .page-title {
+        font-size: 1.6em;
+        left: 15px;
+    }
+
+    .booking .content-box {
+        left: 15px;
+        width: calc(100% - 30px);
+    }
+
+    .booking .slot-btn {
+        width: 40px;
+        padding: 2px 4px;
+    }
+}

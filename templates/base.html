@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +20,9 @@
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
+
+{# دیباگ: نام URL فعلی #}
+<!-- Debug: {{ request.resolver_match.url_name }} -->
 
 {% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'signup' and request.resolver_match.url_name != 'homepage' %}
     {% include "header.html" %}

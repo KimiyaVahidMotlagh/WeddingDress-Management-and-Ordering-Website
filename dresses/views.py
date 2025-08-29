@@ -12,3 +12,7 @@ def toggle_favorite(request, dress_id):
         favorite.delete()  # Toggle off
     return redirect('dress_list')
 
+def dress_detail(request, pk):
+    dress = get_object_or_404(Dress, pk=pk)
+    return render(request, 'dresses/dress_detail.html', {'dress': dress})
+

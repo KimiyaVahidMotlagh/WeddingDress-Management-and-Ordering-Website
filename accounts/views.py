@@ -120,8 +120,12 @@ def body_type_result_view(request):
     return render(request, 'accounts/body_type_result.html', {'body_type': body_type})
 
 def recommendations_view(request):
-    return render(request, 'accounts/recommendations.html')
+    return render(request, 'recommendations/recommendation.html')
 
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+def favorites(request):
+    return render(request, 'favorites.html')
+

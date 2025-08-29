@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/generated.css' %}?v=1.0">
+
+{% endblock %}
+
+{% block content %}
+<div class="page-title">
+    <h2>Generated Wedding Dress</h2>
+</div>
+
+<div class="generated-container">
+    <div class="generated-image-card">
+        <img src="{{ image_url }}" alt="Generated Wedding Dress" class="generated-img">
+
+        <div class="image-details">
+            <h3>Generated Successfully! 🎉</h3>
+
+            <div class="prompt-section">
+                <h4>Prompt Used:</h4>
+                <p class="prompt-text">{{ prompt }}</p>
+            </div>
+
+            <div class="action-buttons">
+                <button onclick="downloadImage('{{ image_url }}', 'generated_dress.png')" class="download-btn">
+                    📥 Download Image
+                </button>
+
+                <a href="{% url 'recommendation:generate' %}" class="generate-again-btn">
+                    🔄 Generate Another
+                </a>
+
+                <a href="{% url 'recommendation:recommendation' %}" class="view-all-btn">
+                    📋 View All Generated
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function downloadImage(imageUrl, fileName) {
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
+{% endblock %}

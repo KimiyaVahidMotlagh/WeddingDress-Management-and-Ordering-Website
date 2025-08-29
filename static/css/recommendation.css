@@ -1,0 +1,220 @@
+body{
+ background-image: url('/static/images/generate.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.recommendation-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 40px 20px;
+    margin-top: 0;
+    max-width: 500px;
+    width: 100%;
+    margin-left: auto;
+}
+
+.generate-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 40px 20px;
+    margin-top: 80px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.page-title {
+    color: #883311;
+    font-weight: bold;
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    margin: 0 30px 30px 200px;
+    width: auto;
+    white-space: nowrap;
+    padding: 5px 0;
+}
+
+.page-title h2 {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    color: #883311;
+    font-weight: 700;
+}
+
+.page-title p {
+    font-size: 1.2em;
+    color: #443122;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0;
+}
+
+.generate-button-container {
+    margin: 0 30px 30px 0;
+    text-align: right;
+    width: 100%;
+}
+
+.generate-btn-page {
+    background-color: #07374b;
+    color: #CFBB99;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.generate-btn-page:hover {
+    background-color: #61a4ad;
+}
+
+
+.image-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.images-section {
+    background-color: rgba(200, 217, 230, 0.9);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 30px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.generated-item {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.generated-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.generated-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.image-info {
+    padding: 15px;
+}
+
+.image-prompt {
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.image-date {
+    color: #666;
+    font-size: 12px;
+}
+
+.image-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.save-btn {
+    background: rgba(255,255,255,0.9);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.save-btn:hover {
+    background: white;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.no-images-message {
+    text-align: center;
+    padding: 50px 20px;
+    color: #443122;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+    backdrop-filter: blur(5px);
+}
+
+.no-images-message p {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #443122;
+}
+
+.no-images-message a {
+    color: #07374b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.no-images-message a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .image-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .generated-image {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .image-container {
+        grid-template-columns: 1fr;
+    }
+
+    .generated-image {
+        height: 200px;
+    }
+}

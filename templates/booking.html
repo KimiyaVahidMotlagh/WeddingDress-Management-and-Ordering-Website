@@ -1,0 +1,385 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Booking{% endblock %}
+
+{% block body_class %}booking{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/booking.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <h1 class="page-title">Book Your Appointment</h1>
+
+    <div class="content-box">
+        <!-- سمت چپ: جدول -->
+        <div class="table-container">
+            <div class="week-navigation">
+                <button id="prev-week" class="nav-btn">Previous Week</button>
+                <span id="week-display">Current Week</span>
+                <button id="next-week" class="nav-btn">Next Week</button>
+            </div>
+
+            <div id="booking-table-container">
+                <table id="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Time/Day</th>
+                            <th data-date="2025-08-23">Saturday<br>2025-08-23</th>
+                            <th data-date="2025-08-24">Sunday<br>2025-08-24</th>
+                            <th data-date="2025-08-25">Monday<br>2025-08-25</th>
+                            <th data-date="2025-08-26">Tuesday<br>2025-08-26</th>
+                            <th data-date="2025-08-27">Wednesday<br>2025-08-27</th>
+                            <th data-date="2025-08-28">Thursday<br>2025-08-28</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10:00</td>
+                            <td class="time-slot" data-day="Saturday" data-date="2025-08-23" data-time="10:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Sunday" data-date="2025-08-24" data-time="10:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Monday" data-date="2025-08-25" data-time="10:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Tuesday" data-date="2025-08-26" data-time="10:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Wednesday" data-date="2025-08-27" data-time="10:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Thursday" data-date="2025-08-28" data-time="10:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11:00</td>
+                            <td class="time-slot" data-day="Saturday" data-date="2025-08-23" data-time="11:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Sunday" data-date="2025-08-24" data-time="11:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Monday" data-date="2025-08-25" data-time="11:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Tuesday" data-date="2025-08-26" data-time="11:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Wednesday" data-date="2025-08-27" data-time="11:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Thursday" data-date="2025-08-28" data-time="11:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12:00</td>
+                            <td class="time-slot" data-day="Saturday" data-date="2025-08-23" data-time="12:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Sunday" data-date="2025-08-24" data-time="12:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Monday" data-date="2025-08-25" data-time="12:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Tuesday" data-date="2025-08-26" data-time="12:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Wednesday" data-date="2025-08-27" data-time="12:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Thursday" data-date="2025-08-28" data-time="12:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>17:00</td>
+                            <td class="time-slot" data-day="Saturday" data-date="2025-08-23" data-time="17:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Sunday" data-date="2025-08-24" data-time="17:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Monday" data-date="2025-08-25" data-time="17:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Tuesday" data-date="2025-08-26" data-time="17:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Wednesday" data-date="2025-08-27" data-time="17:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Thursday" data-date="2025-08-28" data-time="17:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>18:00</td>
+                            <td class="time-slot" data-day="Saturday" data-date="2025-08-23" data-time="18:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Sunday" data-date="2025-08-24" data-time="18:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Monday" data-date="2025-08-25" data-time="18:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Tuesday" data-date="2025-08-26" data-time="18:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Wednesday" data-date="2025-08-27" data-time="18:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Thursday" data-date="2025-08-28" data-time="18:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>19:00</td>
+                            <td class="time-slot" data-day="Saturday" data-date="2025-08-23" data-time="19:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Sunday" data-date="2025-08-24" data-time="19:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Monday" data-date="2025-08-25" data-time="19:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Tuesday" data-date="2025-08-26" data-time="19:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                           极
+                            <td class="time-slot" data-day="Wednesday" data-date="2025-08-27" data-time="19:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Thursday" data-date="2025-08-28" data-time="19:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>20:00</td>
+                            <td class="time-slot" data-day="Saturday" data-date="2025-08-23" data-time="20:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Sunday" data-date="2025-08-24" data-time="20:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Monday" data-date="2025-08-25" data-time="20:00">
+                               极
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Tuesday" data-date="2025-08-26" data-time="20:00">
+                                <button class="slot-btn">极Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Wednesday" data-date="2025-08-27" data-time="20:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                            <td class="time-slot" data-day="Thursday" data-date="2025-08-28" data-time="20:00">
+                                <button class="slot-btn">Book</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="selected-time" style="display: none; margin-top: 20px;">
+    <h2>Selected Time: <span id="selected-time-text"></span></h2>
+    <button id="confirm-booking" class="submit-btn">Confirm Booking</button>
+</div>
+        </div>
+
+        <div class="user-sidebar">
+            <div class="user-bookings">
+                <h2>We are waiting for you at:</h2>
+                <div class="no-booking">
+                    You don't have any active bookings.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="confirmation-message" class="confirmation-message">
+    <p>We are waiting for you at:</p>
+    <p id="confirmation-details"></p>
+</div>
+
+<script>
+    const bookedSlots = ["2025-08-23_10:00", "2025-08-24_11:00", "2025-08-25_17:00"];
+    const weekOffset = 0;
+    const isAuthenticated = true;
+
+    let userBookings = JSON.parse(localStorage.getItem('userBookings')) || [];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        if (weekOffset === 0) {
+            document.getElementById('prev-week').disabled = true;
+            document.getElementById('prev-week').style.opacity = '0.5';
+        }
+
+        displayUserBookings();
+
+        const timeSlots = document.querySelectorAll('.time-slot');
+        timeSlots.forEach(slot => {
+            const date = slot.getAttribute('data-date');
+            const time = slot.getAttribute('data-time');
+            const slotKey = `${date}_${time}`;
+
+            if (bookedSlots.includes(slotKey) || isBookedByUser(date, time)) {
+                slot.classList.add('booked');
+                if (slot.querySelector('.slot-btn')) {
+                    slot.querySelector('.slot-btn').disabled = true;
+                    slot.querySelector('.slot-btn').textContent = 'Booked';
+                }
+            }
+        });
+
+        if (isAuthenticated) {
+            document.querySelectorAll('.slot-btn:not(:disabled)').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const slot = this.parentElement;
+                    selectTimeSlot(slot);
+                });
+            });
+        }
+    });
+
+    function isBookedByUser(date, time) {
+        return userBookings.some(booking => booking.date === date && booking.time === time);
+    }
+
+    function displayUserBookings() {
+        const userBookingsContainer = document.querySelector('.user-bookings');
+
+        if (userBookings.length > 0) {
+            const lastBooking = userBookings[userBookings.length - 1];
+
+            let bookingsHTML = '<h2>We are waiting for you at:</h2>';
+            bookingsHTML += `
+                <div class="booking-item">
+                    <p><strong>Day:</strong> ${lastBooking.day}</p>
+                    <p><strong>Date:</strong> ${lastBooking.date}</p>
+                    <p><strong>Time:</strong> ${lastBooking.time}</p>
+                </div>
+            `;
+            userBookingsContainer.innerHTML = bookingsHTML;
+        } else {
+            userBookingsContainer.innerHTML = `
+                <h2>We are waiting for you at:</h2>
+                <div class="no-booking">You don't have any active bookings.</div>
+            `;
+        }
+    }
+
+    function selectTimeSlot(element) {
+        document.querySelectorAll('.time-slot.selected').forEach(slot => {
+            slot.classList.remove('selected');
+            if (slot.querySelector('.slot-btn')) {
+                slot.querySelector('.slot-btn').textContent = 'Book';
+            }
+        });
+
+        element.classList.add('selected');
+        if (element.querySelector('.slot-btn')) {
+            element.querySelector('.slot-btn').textContent = 'Selected';
+        }
+
+        const day = element.getAttribute('data-day');
+        const date = element.getAttribute('data-date');
+        const time = element.getAttribute('data-time');
+
+        document.getElementById('selected-time-text').textContent =
+            `${day}, ${date}, at ${time}`;
+        document.getElementById('selected-time').style.display = 'block';
+
+        sessionStorage.setItem('selectedDay', day);
+        sessionStorage.setItem('selectedDate', date);
+        sessionStorage.setItem('selectedTime', time);
+    }
+
+    document.getElementById('confirm-booking').addEventListener('click', function() {
+        const day = sessionStorage.getItem('selectedDay');
+        const date = sessionStorage.getItem('selectedDate');
+        const time = sessionStorage.getItem('selectedTime');
+
+        if (!day || !date || !time) {
+            alert('Please select a time slot.');
+            return;
+        }
+
+        const previousBooking = userBookings.length > 0 ? userBookings[0] : null;
+
+        userBookings = [{ day, date, time }];
+        localStorage.setItem('userBookings', JSON.stringify(userBookings));
+
+        if (previousBooking) {
+            const timeSlots = document.querySelectorAll('.time-slot');
+            timeSlots.forEach(slot => {
+                const slotDate = slot.getAttribute('data-date');
+                const slotTime = slot.getAttribute('data-time');
+
+                if (slotDate === previousBooking.date && slotTime === previousBooking.time) {
+                    slot.classList.remove('booked');
+                    if (slot.querySelector('.slot-btn')) {
+                        slot.querySelector('.slot-btn').disabled = false;
+                        slot.querySelector('.slot-btn').textContent = 'Book';
+                    }
+                }
+            });
+        }
+
+        const timeSlots = document.querySelectorAll('.time-slot');
+        timeSlots.forEach(slot => {
+            const slotDate = slot.getAttribute('data-date');
+            const slotTime = slot.getAttribute('data-time');
+
+            if (slotDate === date && slotTime === time) {
+                slot.classList.add('booked');
+                if (slot.querySelector('.slot-btn')) {
+                    slot.querySelector('.slot-btn').disabled = true;
+                    slot.querySelector('.slot-btn').textContent = 'Booked';
+                }
+            }
+        });
+
+        displayUserBookings();
+        document.getElementById('selected-time').style.display = 'none';
+
+        sessionStorage.removeItem('selectedDay');
+        sessionStorage.removeItem('selectedDate');
+        sessionStorage.removeItem('selectedTime');
+    });
+
+    document.getElementById('prev-week').addEventListener('click', function() {
+        const newWeek = Math.max(0, weekOffset - 1);
+        alert('Previous week: ' + newWeek);
+    });
+
+    document.getElementById('next-week').addEventListener('click', function() {
+        const newWeek = weekOffset + 1;
+        alert('Next week: ' + newWeek);
+    });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
+{% endblock %}

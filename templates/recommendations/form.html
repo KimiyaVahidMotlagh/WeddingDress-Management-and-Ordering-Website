@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/generate-page.css' %}?v=7.0">
+{% endblock %}
+
+{% block body_class %}recommendation-generate{% endblock %}
+
+
+{% block content %}
+<div class="main-container">
+    <div class="page-title">
+    <h2>Generate Wedding Dress Recommendation</h2>
+</div>
+
+<div class="generate-form-container">
+    <form method="POST" class="generate-form">
+        {% csrf_token %}
+
+        <div class="form-group required-field">
+            <label for="body_type">Body Type / تیپ بدنی:</label>
+            <select name="body_type" id="body_type" required>
+                <option value="hourglass">Hourglass (ساعت شنی)</option>
+                <option value="pear">Pear (گلابی)</option>
+                <option value="apple">Apple (سیب)</option>
+                <option value="rectangle">Rectangle (مستطیل)</option>
+                <option value="inverted_triangle">Inverted Triangle (مثلث معکوس)</option>
+            </select>
+        </div>
+
+        <div class="form-group required-field">
+            <label for="sleeve">Sleeve / آستین:</label>
+            <select name="sleeve" id="sleeve" required>
+                <option value="sleeveless">Sleeveless (بدون آستین)</option>
+                <option value="off-shoulder">Off-Shoulder (آف شولدر)</option>
+                <option value="short sleeves">Short Sleeves (آستین کوتاه)</option>
+                <option value="long sleeves">Long Sleeves (آستین بلند)</option>
+                <option value="cap sleeves">Cap Sleeves (آستین کلوش)</option>
+            </select>
+        </div>
+
+        <div class="form-group required-field">
+            <label for="neckline">Neckline / یقه:</label>
+            <select name="neckline" id="neckline" required>
+                <option value="sweetheart neckline">Sweetheart (دلبری)</option>
+                <option value="V-neck">V-Neck (هفت)</option>
+                <option value="round neck">Round Neck (گرد)</option>
+                <option value="boat neck">Boat Neck (قایقی بسته)</option>
+                <option value="high neck">High Collar (ایستاده)</option>
+                <option value="halter neck">Halter (هالتری)</option>
+                <option value="queen anne neckline">Queen Anne (سلطنتی)</option>
+                <option value="square neck">Square Neck (حشتی)</option>
+                <option value="strapless sweetheart">Strapless Sweetheart (دکلته)</option>
+                <option value="off-shoulder neckline">Off-Shoulder (قایقی باز)</option>
+                <option value="one shoulder neckline">One Shoulder (رومی)</option>
+            </select>
+        </div>
+
+        <div class="form-group required-field">
+            <label for="bodice">Bodice / کارشدگی بالاتنه:</label>
+            <select name="bodice" id="bodice" required>
+                <option value="simple bodice">Simple (ساده)</option>
+                <option value="lace bodice">Lace (تور)</option>
+                <option value="embellished bodice">Embellished (دانتل)</option>
+            </select>
+        </div>
+
+        <div class="form-group required-field">
+            <label for="skirt">Skirt / دامن:</label>
+            <select name="skirt" id="skirt" required>
+                <option value="A-line skirt">A-Line</option>
+                <option value="ballgown skirt">Ballgown (پفی)</option>
+                <option value="mermaid skirt">Mermaid (ماهی)</option>
+                <option value="sheath skirt">Sheath (مدادی)</option>
+                <option value="layered skirt">Layered (لایه‌ای)</option>
+            </select>
+        </div>
+
+        <div class="form-group required-field">
+            <label for="train">Train / دنباله:</label>
+            <select name="train" id="train" required>
+                <option value="chapel train">Chapel Train : 1m</option>
+                <option value="cathedral train">Cathedral Train : 2-3m</option>
+                <option value="court train">Court Train : 0.5m</option>
+                <option value="watteau train">Watteau Train : دنباله از یقه</option>
+                <option value="no train">No Train : بدون دنباله</option>
+            </select>
+        </div>
+
+        <div class="form-group required-field">
+            <label for="structure">Structure / ساختار:</label>
+            <select name="structure" id="structure" required>
+                <option value="tailored fit">Tailored Fit (فیت بدن)</option>
+                <option value="flowy fit">Flowy Fit (راحت و روان)</option>
+                <option value="fitted">Fitted (چسبان)</option>
+                <option value="loose fit">Loose Fit (گشاد)</option>
+                <option value="princess fit">Princess Fit (کمر باریک و دامن پفی)</option>
+            </select>
+        </div>
+
+        <div class="form-submit">
+            <button type="submit" class="generate-btn">Generate Dress / تولید لباس</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

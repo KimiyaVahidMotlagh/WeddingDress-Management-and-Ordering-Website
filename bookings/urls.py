@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import book_dress
-from bookings.views import my_bookings
+from .views import booking_page, create_booking, my_bookings
 
 urlpatterns = [
-    path('dress/<int:dress_id>/book/', book_dress, name='book_dress'),
+    path("", booking_page, name="booking_page"),
+    path("create/", create_booking, name="create_booking"),
+    path("my/", my_bookings, name="my_booking"),
 ]

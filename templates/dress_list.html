@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>لیست لباس‌ها</h1>
+<ul>
+  {% for dress in dresses %}
+    <li><a href="{% url 'dress_detail' dress.pk %}">{{ dress.name }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

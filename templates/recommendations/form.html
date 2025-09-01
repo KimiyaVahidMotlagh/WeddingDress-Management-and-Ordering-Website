@@ -2,106 +2,193 @@
 {% load static %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'css/generate-page.css' %}?v=7.0">
+<link rel="stylesheet" href="{% static 'css/generate-page.css' %}?v=8.4">
 {% endblock %}
 
 {% block body_class %}recommendation-generate{% endblock %}
 
-
 {% block content %}
 <div class="main-container">
     <div class="page-title">
-    <h2>Generate Wedding Dress Recommendation</h2>
+        <h2>Generate Wedding Dresses</h2>
+    </div>
+
+    <div class="content-wrapper">
+        <!-- بخش نمایش تصاویر که ابتدا مخفی است -->
+        <div class="image-preview-container" id="imagePreviewContainer" style="display: none;">
+            <div class="image-preview">
+                <img id="previewImage" src="" alt="Preview">
+                <div class="image-caption">
+                    <span id="previewCaption"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="generate-form-container">
+            <form method="POST" class="generate-form">
+                {% csrf_token %}
+
+                <div class="form-group required-field">
+                    <label for="body_type">Body Type / تیپ بدنی:</label>
+                    <select name="body_type" id="body_type" class="preview-trigger" data-image-type="body_type" required>
+                        <option value="" selected disabled>-- انتخاب کنید --</option>
+                        <option value="hourglass" data-image="hourglass.jpg" data-caption="Hourglass (ساعت شنی)">Hourglass (ساعت شنی)</option>
+                        <option value="pear" data-image="pear.jpg" data-caption="Pear (گلابی)">Pear (گلابی)</option>
+                        <option value="apple" data-image="apple.jpg" data-caption="Apple (سیب)">Apple (سیب)</option>
+                        <option value="rectangle" data-image="rectangle.jpg" data-caption="Rectangle (مستطیل)">Rectangle (مستطیل)</option>
+                        <option value="inverted_triangle" data-image="inverted_triangle.jpg" data-caption="Inverted Triangle (مثلث معکوس)">Inverted Triangle (مثلث معکوس)</option>
+                    </select>
+                </div>
+
+                <div class="form-group required-field">
+                    <label for="sleeve">Sleeve / آستین:</label>
+                    <select name="sleeve" id="sleeve" class="preview-trigger" data-image-type="sleeve" required>
+                        <option value="" selected disabled>-- انتخاب کنید --</option>
+                        <option value="sleeveless" data-image="sleeveless.jpg" data-caption="Sleeveless (بدون آستین)">Sleeveless (بدون آستین)</option>
+                        <option value="off-shoulder" data-image="off-shoulder.jpg" data-caption="Off-Shoulder (آف شولدر)">Off-Shoulder (آف شولدر)</option>
+                        <option value="short sleeves" data-image="short.jpg" data-caption="Short Sleeves (آستین کوتاه)">Short Sleeves (آستین کوتاه)</option>
+                        <option value="long sleeves" data-image="long.jpg" data-caption="Long Sleeves (آستین بلند)">Long Sleeves (آستین بلند)</option>
+                        <option value="cap sleeves" data-image="cap.jpg" data-caption="Cap Sleeves (آستین کلوش)">Cap Sleeves (آستین کلوش)</option>
+                    </select>
+                </div>
+
+                <div class="form-group required-field">
+                    <label for="neckline">Neckline / یقه:</label>
+                    <select name="neckline" id="neckline" class="preview-trigger" data-image-type="neckline" required>
+                        <option value="" selected disabled>-- انتخاب کنید --</option>
+                        <option value="sweetheart neckline" data-image="sweetheart.jpg" data-caption="Sweetheart (دلبری)">Sweetheart (دلبری)</option>
+                        <option value="V-neck" data-image="v-neck.jpg" data-caption="V-Neck (هفت)">V-Neck (هفت)</option>
+                        <option value="round neck" data-image="round.jpg" data-caption="Round Neck (گرد)">Round Neck (گرد)</option>
+                        <option value="boat neck" data-image="boat.jpg" data-caption="Boat Neck (قایقی بسته)">Boat Neck (قایقی بسته)</option>
+                        <option value="high neck" data-image="high.jpg" data-caption="High Collar (ایستاده)">High Collar (ایستاده)</option>
+                        <option value="halter neck" data-image="halter.jpg" data-caption="Halter (هالتری)">Halter (هالتری)</option>
+                        <option value="square neck" data-image="square.jpg" data-caption="Square Neck (خشتی)">Square Neck (خشتی)</option>
+                        <option value="strapless sweetheart" data-image="strapless.jpg" data-caption="Strapless Sweetheart (دکلته)">Strapless Sweetheart (دکلته)</option>
+                        <option value="off-shoulder neckline" data-image="off-shoulder.jpg" data-caption="Off-Shoulder (قایقی باز)">Off-Shoulder (قایقی باز)</option>
+                        <option value="one shoulder neckline" data-image="one_shoulder.jpg" data-caption="One Shoulder (رومی)">One Shoulder (رومی)</option>
+                    </select>
+                </div>
+
+                <div class="form-group required-field">
+                    <label for="bodice">Bodice / کارشدگی بالاتنه:</label>
+                    <select name="bodice" id="bodice" class="preview-trigger" data-image-type="bodice" required>
+                        <option value="" selected disabled>-- انتخاب کنید --</option>
+                        <option value="simple bodice" data-image="simple.jpg" data-caption="Simple (ساده)">Simple (ساده)</option>
+                        <option value="lace bodice" data-image="lace.jpg" data-caption="Lace (تور)">Lace (تور)</option>
+                        <option value="embellished bodice" data-image="embellished.jpg" data-caption="Embellished (دانتل)">Embellished (دانتل)</option>
+                    </select>
+                </div>
+
+                <div class="form-group required-field">
+                    <label for="skirt">Skirt / دامن:</label>
+                    <select name="skirt" id="skirt" class="preview-trigger" data-image-type="skirt" required>
+                        <option value="" selected disabled>-- انتخاب کنید --</option>
+                        <option value="A-line skirt" data-image="a-line.jpg" data-caption="A-Line">A-Line</option>
+                        <option value="ballgown skirt" data-image="ballgown.jpg" data-caption="Ballgown (پفی)">Ballgown (پفی)</option>
+                        <option value="mermaid skirt" data-image="mermaid.jpg" data-caption="Mermaid (ماهی)">Mermaid (ماهی)</option>
+                        <option value="sheath skirt" data-image="sheath.jpg" data-caption="Sheath (مدادی)">Sheath (مدادی)</option>
+                        <option value="layered skirt" data-image="layered.jpg" data-caption="Layered (لایه‌ای)">Layered (لایه‌ای)</option>
+                    </select>
+                </div>
+
+                <div class="form-group required-field">
+                    <label for="train">Train / دنباله:</label>
+                    <select name="train" id="train" class="preview-trigger" data-image-type="train" required>
+                        <option value="" selected disabled>-- انتخاب کنید --</option>
+                        <option value="no train" data-image="none.jpg" data-caption="No Train : بدون دنباله">No Train : بدون دنباله</option>
+                        <option value="court train" data-image="court.jpg" data-caption="Court Train : 0.5m">Court Train : 0.5m</option>
+                        <option value="chapel train" data-image="chapel.jpg" data-caption="Chapel Train : 1m">Chapel Train : 1m</option>
+                        <option value="cathedral train" data-image="cathedral.jpg" data-caption="Cathedral Train : 2-3m">Cathedral Train : 2-3m</option>
+                    </select>
+                </div>
+
+                <div class="form-group required-field">
+                    <label for="structure">Structure / ساختار:</label>
+                    <select name="structure" id="structure" class="preview-trigger" data-image-type="structure" required>
+                        <option value="" selected disabled>-- انتخاب کنید --</option>
+                        <option value="flowy fit" data-image="flowy.jpg" data-caption="Flowy Fit (راحت)">Flowy Fit (راحت)</option>
+                        <option value="fitted" data-image="fitted.jpg" data-caption="Fitted (چسبان)">Fitted (چسبان)</option>
+                        <option value="princess fit" data-image="princess.jpg" data-caption="Princess Fit (کمر باریک و دامن پفی)">Princess Fit (کمر باریک و دامن پفی)</option>
+                    </select>
+                </div>
+
+                <div class="form-submit">
+                    <button type="submit" class="generate-btn">Generate Dress / تولید لباس</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
-<div class="generate-form-container">
-    <form method="POST" class="generate-form">
-        {% csrf_token %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const previewImage = document.getElementById('previewImage');
+    const previewCaption = document.getElementById('previewCaption');
+    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+    const triggers = document.querySelectorAll('.preview-trigger');
 
-        <div class="form-group required-field">
-            <label for="body_type">Body Type / تیپ بدنی:</label>
-            <select name="body_type" id="body_type" required>
-                <option value="hourglass">Hourglass (ساعت شنی)</option>
-                <option value="pear">Pear (گلابی)</option>
-                <option value="apple">Apple (سیب)</option>
-                <option value="rectangle">Rectangle (مستطیل)</option>
-                <option value="inverted_triangle">Inverted Triangle (مثلث معکوس)</option>
-            </select>
-        </div>
+    // تابع برای تغییر تصویر
+    function updatePreview(imageType, imageName, caption) {
+        // نمایش کانتینر تصویر
+        imagePreviewContainer.style.display = 'block';
 
-        <div class="form-group required-field">
-            <label for="sleeve">Sleeve / آستین:</label>
-            <select name="sleeve" id="sleeve" required>
-                <option value="sleeveless">Sleeveless (بدون آستین)</option>
-                <option value="off-shoulder">Off-Shoulder (آف شولدر)</option>
-                <option value="short sleeves">Short Sleeves (آستین کوتاه)</option>
-                <option value="long sleeves">Long Sleeves (آستین بلند)</option>
-                <option value="cap sleeves">Cap Sleeves (آستین کلوش)</option>
-            </select>
-        </div>
+        // نمایش انیمیشن loading
+        previewImage.style.opacity = '0.5';
 
-        <div class="form-group required-field">
-            <label for="neckline">Neckline / یقه:</label>
-            <select name="neckline" id="neckline" required>
-                <option value="sweetheart neckline">Sweetheart (دلبری)</option>
-                <option value="V-neck">V-Neck (هفت)</option>
-                <option value="round neck">Round Neck (گرد)</option>
-                <option value="boat neck">Boat Neck (قایقی بسته)</option>
-                <option value="high neck">High Collar (ایستاده)</option>
-                <option value="halter neck">Halter (هالتری)</option>
-                <option value="queen anne neckline">Queen Anne (سلطنتی)</option>
-                <option value="square neck">Square Neck (حشتی)</option>
-                <option value="strapless sweetheart">Strapless Sweetheart (دکلته)</option>
-                <option value="off-shoulder neckline">Off-Shoulder (قایقی باز)</option>
-                <option value="one shoulder neckline">One Shoulder (رومی)</option>
-            </select>
-        </div>
+        // ساخت مسیر کامل تصویر
+        const imageUrl = '/static/images/' + imageType + '/' + imageName;
+        console.log("Loading image: ", imageUrl);
 
-        <div class="form-group required-field">
-            <label for="bodice">Bodice / کارشدگی بالاتنه:</label>
-            <select name="bodice" id="bodice" required>
-                <option value="simple bodice">Simple (ساده)</option>
-                <option value="lace bodice">Lace (تور)</option>
-                <option value="embellished bodice">Embellished (دانتل)</option>
-            </select>
-        </div>
+        // ایجاد یک تصویر جدید برای پیش‌بارگذاری
+        const newImage = new Image();
+        newImage.src = imageUrl;
+        newImage.onload = function() {
+            previewImage.src = imageUrl;
+            previewImage.alt = caption;
+            previewCaption.textContent = caption;
+            previewImage.style.opacity = '1';
+            console.log("Image loaded successfully: ", imageUrl);
+        };
 
-        <div class="form-group required-field">
-            <label for="skirt">Skirt / دامن:</label>
-            <select name="skirt" id="skirt" required>
-                <option value="A-line skirt">A-Line</option>
-                <option value="ballgown skirt">Ballgown (پفی)</option>
-                <option value="mermaid skirt">Mermaid (ماهی)</option>
-                <option value="sheath skirt">Sheath (مدادی)</option>
-                <option value="layered skirt">Layered (لایه‌ای)</option>
-            </select>
-        </div>
+        newImage.onerror = function() {
+            // اگر تصویر یافت نشد، از placeholder استفاده کن
+            const placeholderUrl = '/static/images/placeholder.jpg';
+            previewImage.src = placeholderUrl;
+            previewImage.alt = "تصویر یافت نشد";
+            previewCaption.textContent = "تصویر در دسترس نیست: " + imageName;
+            previewImage.style.opacity = '1';
+            console.error("Image not found: ", imageUrl);
+        };
+    }
 
-        <div class="form-group required-field">
-            <label for="train">Train / دنباله:</label>
-            <select name="train" id="train" required>
-                <option value="chapel train">Chapel Train : 1m</option>
-                <option value="cathedral train">Cathedral Train : 2-3m</option>
-                <option value="court train">Court Train : 0.5m</option>
-                <option value="watteau train">Watteau Train : دنباله از یقه</option>
-                <option value="no train">No Train : بدون دنباله</option>
-            </select>
-        </div>
+    // افزودن رویداد تغییر برای تمام selectها
+    triggers.forEach(trigger => {
+        trigger.addEventListener('change', function() {
+            if (this.value) {
+                const selectedOption = this.options[this.selectedIndex];
+                const imageName = selectedOption.getAttribute('data-image');
+                const caption = selectedOption.getAttribute('data-caption');
+                const imageType = this.getAttribute('data-image-type');
+                updatePreview(imageType, imageName, caption);
+            } else {
+                // اگر هیچ گزینه‌ای انتخاب نشده، کانتینر را مخفی کن
+                imagePreviewContainer.style.display = 'none';
+            }
+        });
 
-        <div class="form-group required-field">
-            <label for="structure">Structure / ساختار:</label>
-            <select name="structure" id="structure" required>
-                <option value="tailored fit">Tailored Fit (فیت بدن)</option>
-                <option value="flowy fit">Flowy Fit (راحت و روان)</option>
-                <option value="fitted">Fitted (چسبان)</option>
-                <option value="loose fit">Loose Fit (گشاد)</option>
-                <option value="princess fit">Princess Fit (کمر باریک و دامن پفی)</option>
-            </select>
-        </div>
+        // همچنین وقتی کاربر روی select کلیک می‌کند، تصویر مربوط به گزینه انتخاب شده فعلی را نشان بده
+        trigger.addEventListener('focus', function() {
+            if (this.value) {
+                const selectedOption = this.options[this.selectedIndex];
+                const imageName = selectedOption.getAttribute('data-image');
+                const caption = selectedOption.getAttribute('data-caption');
+                const imageType = this.getAttribute('data-image-type');
+                updatePreview(imageType, imageName, caption);
+            }
+        });
+    });
 
-        <div class="form-submit">
-            <button type="submit" class="generate-btn">Generate Dress / تولید لباس</button>
-        </div>
-    </form>
-</div>
+    console.log("Preview image script loaded successfully");
+});
+</script>
 {% endblock %}

@@ -1,5 +1,5 @@
 body{
- background-image: url('/static/images/generate.jpg');
+    background-image: url('/static/images/generate.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -9,13 +9,42 @@ body{
     padding: 0;
     display: flex;
     flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .main-container {
     flex: 1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     padding: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+    /* ترتیب طبیعی: تصویر در چپ، فرم در راست */
+}
+
+.image-preview-container {
+    flex: 1;
+    max-width: 400px;
+    margin-top: 80px;
+    background-color: rgba(200, 217, 230, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .generate-form-container {
@@ -25,6 +54,44 @@ body{
     padding: 40px 20px;
     margin-top: 80px;
     max-width: 500px;
+    width: 100%;
+    /* فرم همیشه در سمت راست ثابت می‌ماند */
+}
+
+.preview-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.preview-header h3 {
+    color: #883311;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.image-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#previewImage {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    transition: opacity 0.3s ease;
+}
+
+.image-caption {
+    text-align: center;
+    font-weight: bold;
+    color: #443122;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
     width: 100%;
 }
 
@@ -37,6 +104,8 @@ body{
     width: auto;
     white-space: nowrap;
     padding: 5px 0;
+    text-align: center;
+    width: 100%;
 }
 
 .page-title h2 {
@@ -109,10 +178,11 @@ body{
     padding-right: 12px;
 }
 
-
 .form-group select option {
     background-color: #883311;
     color: #FFF9F0;
+    text-align: right;
+    direction: rtl;
 }
 
 .form-submit {
@@ -149,6 +219,36 @@ body{
     color: #e74c3c;
 }
 
+/* برای صفحه‌های کوچک، طرح بندی را به صورت عمودی درآورید */
+@media (max-width: 968px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image-preview-container {
+        max-width: 500px;
+        width: 100%;
+        margin-top: 20px;
+        order: 2;
+        position: static;
+    }
+
+    .generate-form-container {
+        order: 1;
+        margin-right: 0;
+        align-items: center;
+        padding: 20px 0;
+        max-width: 100%;
+    }
+
+    .generate-form {
+        margin-right: 0;
+        align-items: flex-end;
+        max-width: 100%;
+    }
+}
+
 @media (max-width: 768px) {
     .main-container {
         justify-content: center;
@@ -169,6 +269,7 @@ body{
     .generate-form {
         margin-right: 0;
         max-width: 100%;
+        align-items: flex-end;
     }
 
     .page-title h2 {
@@ -177,6 +278,18 @@ body{
 
     .page-title p {
         font-size: 1.1em;
+    }
+
+    .content-wrapper {
+        padding: 0 10px;
+    }
+
+    .image-preview-container {
+        padding: 15px;
+    }
+
+    #previewImage {
+        max-height: 250px;
     }
 }
 

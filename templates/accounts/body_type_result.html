@@ -4,20 +4,123 @@
 {% block body_class %}body-type-result{% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'css/body_type_result.css' %}" />
+<link rel="stylesheet" href="{% static 'css/body_type_result.css' %}?v=3.3" />
+<style>
+    /* استایل‌های اضافه برای رفع مشکلات */
+    .body-type-result {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .content-wrapper {
+        flex: 1;
+    }
+
+    .result-box h2 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 1.8rem;
+    }
+
+    .result-box h3 {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        font-size: 1.3rem;
+        color: #443122;
+        font-weight: normal;
+    }
+
+    .result-links {
+        margin-top: 15px;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="result-container">
-    <div class="result-box">
-        <h2 id="bodyTypeName">Your body type</h2>
-        <p><strong>{{ body_type }}</strong></p>
+<div class="content-wrapper">
+    <!-- بخش نمایش تصویر تایپ بدنی -->
+    <div class="body-type-image-container">
+        <div class="image-box">
+            <img id="bodyTypeImage" src="" alt="Body Type Image">
+            <div class="image-caption">
+                <span id="bodyTypeCaption">{{ body_type }}</span>
+            </div>
+        </div>
+    </div>
 
-        <a href="{% url 'recommendations' %}" class="result-link">
-            Recommended Wedding Dresses
-        </a>
+    <div class="result-container">
+        <div class="result-box">
+            <h2>Your Body Type</h2>
+            <h3>Find Your Perfect Dress</h3>
 
+            <div class="result-links">
+                <a href="http://127.0.0.1:8000/accounts/user-home/" class="result-link">
+                    Delyar Collection
+                </a>
+                <a href="http://127.0.0.1:8000/recommendation/generate/" class="result-link">
+                    Generate New Dresses
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // نگاشت نام تایپ بدنی به نام فایل تصویر
+    const bodyTypeImages = {
+        'hourglass': 'hourglass.jpg',
+        'pear': 'pear.jpg',
+        'apple': 'apple.jpg',
+        'rectangle': 'rectangle.jpg',
+        'inverted_triangle': 'inverted_triangle.jpg'
+    };
+
+    // گرفتن نام تایپ بدنی از صفحه
+    const bodyType = "{{ body_type }}".toLowerCase();
+    const bodyTypeImage = document.getElementById('bodyTypeImage');
+    const bodyTypeCaption = document.getElementById('bodyTypeCaption');
+
+    // اگر تایپ بدنی در لیست ما وجود دارد، تصویر را بارگذاری کن
+    if (bodyType && bodyTypeImages[bodyType]) {
+        const imageUrl = '/static/images/body_type/' + bodyTypeImages[bodyType];
+        bodyTypeImage.src = imageUrl;
+        bodyTypeImage.alt = bodyType + ' body type';
+        bodyTypeCaption.textContent = bodyType;
+    } else {
+        // اگر تصویری یافت نشد، از placeholder استفاده کن
+        bodyTypeImage.src = '/static/images/placeholder.jpg';
+        bodyTypeImage.alt = 'Body type image not available';
+        bodyTypeCaption.textContent = 'Image not available';
+    }
+
+    // تابع برای یکسان سازی ارتفاع دو باکس
+    function adjustHeights() {
+        const imageBox = document.querySelector('.image-box');
+        const resultBox = document.querySelector('.result-box');
+
+        if (window.innerWidth > 968) {
+            // فقط در صفحه‌های بزرگ ارتفاع را یکسان می‌کنیم
+            const maxHeight = Math.max(imageBox.offsetHeight, resultBox.offsetHeight);
+            imageBox.style.height = maxHeight + 'px';
+            resultBox.style.height = maxHeight + 'px';
+        } else {
+            // در صفحه‌های کوچک ارتفاع خودکار باشد
+            imageBox.style.height = 'auto';
+            resultBox.style.height = 'auto';
+        }
+    }
+
+    // اجرای تابع پس از بارگذاری تصویر
+    if (bodyTypeImage.complete) {
+        adjustHeights();
+    } else {
+        bodyTypeImage.addEventListener('load', adjustHeights);
+    }
+
+    // اجرای تابع هنگام تغییر اندازه پنجره
+    window.addEventListener('resize', adjustHeights);
+});
+</script>
 {% endblock %}
